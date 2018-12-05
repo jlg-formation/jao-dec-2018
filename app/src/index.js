@@ -1,4 +1,5 @@
 import { increase, decrease, setMultiplyNbr } from './action';
+import { increaseTotal, decreaseTotal, setTotal } from './action';
 import { components, draw, action } from './flux';
 import { drawSVG } from './svg';
 import { drawCommand } from './command';
@@ -14,7 +15,14 @@ components.push(drawCommand, drawSVG);
 function main() {
     draw();
     addEventListener('contextmenu', e => e.preventDefault());
-    document.querySelector('button.increase').addEventListener('click', action(increase));
+    document.querySelector('.multiply button.increase').addEventListener('click', action(increase));
+    document.querySelector('.multiply button.decrease').addEventListener('click', action(decrease));
+    document.querySelector('.multiply input').addEventListener('input', action(setMultiplyNbr));
+
+    document.querySelector('.total button.increase').addEventListener('click', action(increaseTotal));
+    document.querySelector('.total button.decrease').addEventListener('click', action(decreaseTotal));
+    document.querySelector('.total input').addEventListener('input', action(setTotal));
+
     addEventListener('keypress', event => {
         console.log('event.key', event.key);
         switch (event.key) {
@@ -29,8 +37,7 @@ function main() {
         }
         event.preventDefault();
     });
-    document.querySelector('button.decrease').addEventListener('click', action(decrease));
-    document.querySelector('.command input').addEventListener('input', action(setMultiplyNbr));
+    
 }
 
 addEventListener('DOMContentLoaded', main);
