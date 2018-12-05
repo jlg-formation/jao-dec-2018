@@ -1,17 +1,11 @@
+import { increase } from './action';
+import { store } from './store';
+
 // import Hashes from 'jshashes';
 
 // const SHA256 = new Hashes.SHA256;
 // const str = 'Sample text!'
 // console.log('SHA256: ' + SHA256.hex(str));
-
-
-const store = {
-    cx: 300,
-    cy: 300,
-    r: 270,
-    total: 100,
-    multiplicationNbr: 6
-}; 
 
 function drawSVG() {
     const div = document.querySelector('div');
@@ -27,7 +21,6 @@ function drawSVG() {
     for (let i = 0; i < store.total; i++) {
         addLine(i);
     }
-
 }
 
 function addLine(i) {
@@ -56,10 +49,7 @@ function addGraduation(angle) {
     svg.appendChild(circle);
 }
 
-function increase() {
-    console.log('increase');
-    store.multiplicationNbr++;
-}
+
 
 function decrease(...args) {
     console.log('decrease', args);
