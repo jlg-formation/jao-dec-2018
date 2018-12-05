@@ -11,7 +11,7 @@ const r = 270;
 const total = 100;
 let multiplicationNbr = 6;
 
-function draw() {
+function drawSVG() {
     const div = document.querySelector('div');
     div.innerHTML = `
 <svg height="600" width="600">
@@ -57,19 +57,35 @@ function addGraduation(angle) {
 function increase() {
     console.log('increase');
     multiplicationNbr++;
-    document.querySelector('.command span').innerHTML = multiplicationNbr;
+    drawCommand();
+    drawSVG();
 }
 
 function decrease() {
     console.log('decrease');
     multiplicationNbr--;
-    document.querySelector('.command span').innerHTML = multiplicationNbr;
+    drawCommand();
+    drawSVG();
 }
 
+function setMultiplyNbr() {
+    multiplicationNbr = document.querySelector('.command input').value;
+    drawCommand();
+    drawSVG();
+}
+
+function drawCommand() {
+    document.querySelector('.command input').value = multiplicationNbr;
+}
+
+
+
 function main() {
-    draw();
+    drawSVG();
+    drawCommand();
     document.querySelector('button.increase').addEventListener('click', increase);
     document.querySelector('button.decrease').addEventListener('click', decrease);
+    document.querySelector('.command input').addEventListener('input', setMultiplyNbr);
 }
 
 addEventListener('DOMContentLoaded', main);
