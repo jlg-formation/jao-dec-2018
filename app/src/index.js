@@ -13,6 +13,7 @@ components.push(drawCommand, drawSVG);
 
 function main() {
     draw();
+    addEventListener('contextmenu', e=>e.preventDefault());
     document.querySelector('button.increase').addEventListener('click', action(increase));
     addEventListener('keypress', event => {
         console.log('event.key', event.key);
