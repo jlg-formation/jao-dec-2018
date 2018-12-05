@@ -14,6 +14,20 @@ components.push(drawCommand, drawSVG);
 function main() {
     draw();
     document.querySelector('button.increase').addEventListener('click', action(increase));
+    addEventListener('keypress', event => {
+        console.log('event.key', event.key);
+        switch (event.key) {
+            case "+":
+                action(increase)();
+                break;
+            case "-":
+                action(decrease)();
+                break;
+            default:
+                return; // Quitter lorsque cela ne gère pas l'événement touche.
+        }
+        event.preventDefault();
+    });
     document.querySelector('button.decrease').addEventListener('click', action(decrease));
     document.querySelector('.command input').addEventListener('input', action(setMultiplyNbr));
 }
