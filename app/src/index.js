@@ -57,21 +57,15 @@ function addGraduation(angle) {
 function increase() {
     console.log('increase');
     multiplicationNbr++;
-    drawCommand();
-    drawSVG();
 }
 
-function decrease() {
-    console.log('decrease');
+function decrease(...args) {
+    console.log('decrease', args);
     multiplicationNbr--;
-    drawCommand();
-    drawSVG();
 }
 
 function setMultiplyNbr() {
     multiplicationNbr = document.querySelector('.command input').value;
-    drawCommand();
-    drawSVG();
 }
 
 function drawCommand() {
@@ -79,13 +73,25 @@ function drawCommand() {
 }
 
 
+function draw() {
+    drawCommand();
+    drawSVG();
+}
+
+function action(callback) {
+    return function(...args) {
+        callback(...args);
+        draw();
+    }
+}
+
+
 
 function main() {
-    drawSVG();
-    drawCommand();
-    document.querySelector('button.increase').addEventListener('click', increase);
-    document.querySelector('button.decrease').addEventListener('click', decrease);
-    document.querySelector('.command input').addEventListener('input', setMultiplyNbr);
+    draw();
+    document.querySelector('button.increase').addEventListener('click', action(increase));
+    document.querySelector('button.decrease').addEventListener('click', action(decrease));
+    document.querySelector('.command input').addEventListener('input', action(setMultiplyNbr));
 }
 
 addEventListener('DOMContentLoaded', main);
