@@ -5,39 +5,41 @@
 // console.log('SHA256: ' + SHA256.hex(str));
 
 
-const cx = 300;
-const cy = 300;
-const r = 270;
-const total = 100;
-let multiplicationNbr = 6;
+const store = {
+    cx: 300,
+    cy: 300,
+    r: 270,
+    total: 100,
+    multiplicationNbr: 6
+}; 
 
 function drawSVG() {
     const div = document.querySelector('div');
     div.innerHTML = `
 <svg height="600" width="600">
-    <circle cx="${cx}" cy="${cy}" r="${r}" stroke="black" stroke-width="3" fill="hsl(0, 100%, 50%, 0.1)" />
+    <circle cx="${store.cx}" cy="${store.cy}" r="${store.r}" stroke="black" stroke-width="3" fill="hsl(0, 100%, 50%, 0.1)" />
 </svg>
     `;
-    for (let i = 0; i < total; i++) {
-        addGraduation((360 / total) * i);
+    for (let i = 0; i < store.total; i++) {
+        addGraduation((360 / store.total) * i);
     }
 
-    for (let i = 0; i < total; i++) {
+    for (let i = 0; i < store.total; i++) {
         addLine(i);
     }
 
 }
 
 function addLine(i) {
-    const angle1 = (2 * Math.PI / total) * i;
-    const angle2 = (2 * Math.PI / total) * i * multiplicationNbr;
+    const angle1 = (2 * Math.PI / store.total) * i;
+    const angle2 = (2 * Math.PI / store.total) * i * store.multiplicationNbr;
 
     const svg = document.querySelector('svg');
     const line = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-    line.setAttribute("x1", cx + r * Math.cos(angle1));
-    line.setAttribute("y1", cy + r * Math.sin(angle1));
-    line.setAttribute("x2", cy + r * Math.cos(angle2));
-    line.setAttribute("y2", cy + r * Math.sin(angle2));
+    line.setAttribute("x1", store.cx + store.r * Math.cos(angle1));
+    line.setAttribute("y1", store.cy + store.r * Math.sin(angle1));
+    line.setAttribute("x2", store.cy + store.r * Math.cos(angle2));
+    line.setAttribute("y2", store.cy + store.r * Math.sin(angle2));
     line.setAttribute("stroke", "black");
     line.setAttribute("stroke-width", "3");
     svg.appendChild(line);
@@ -47,8 +49,8 @@ function addGraduation(angle) {
     angle = angle * 2 * Math.PI / 360;
     const svg = document.querySelector('svg');
     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-    circle.setAttribute("cx", cx + r * Math.cos(angle));
-    circle.setAttribute("cy", cy + r * Math.sin(angle));
+    circle.setAttribute("cx", store.cx + store.r * Math.cos(angle));
+    circle.setAttribute("cy", store.cy + store.r * Math.sin(angle));
     circle.setAttribute("r", 5);
     circle.setAttribute("stroke", "black");
     svg.appendChild(circle);
@@ -56,20 +58,20 @@ function addGraduation(angle) {
 
 function increase() {
     console.log('increase');
-    multiplicationNbr++;
+    store.multiplicationNbr++;
 }
 
 function decrease(...args) {
     console.log('decrease', args);
-    multiplicationNbr--;
+    store.multiplicationNbr--;
 }
 
 function setMultiplyNbr() {
-    multiplicationNbr = document.querySelector('.command input').value;
+    store.multiplicationNbr = document.querySelector('.command input').value;
 }
 
 function drawCommand() {
-    document.querySelector('.command input').value = multiplicationNbr;
+    document.querySelector('.command input').value = store.multiplicationNbr;
 }
 
 
