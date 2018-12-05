@@ -9,10 +9,11 @@ const cx = 300;
 const cy = 300;
 const r = 270;
 const total = 100;
+const multiplicationNbr = 6;
 
 function draw() {
-    const body = document.querySelector('body');
-    body.innerHTML = `
+    const div = document.querySelector('div');
+    div.innerHTML = `
 <svg height="600" width="600">
     <circle cx="${cx}" cy="${cy}" r="${r}" stroke="black" stroke-width="3" fill="hsl(0, 100%, 50%, 0.1)" />
 </svg>
@@ -29,7 +30,7 @@ function draw() {
 
 function addLine(i) {
     const angle1 = (2 * Math.PI / total) * i;
-    const angle2 = (2 * Math.PI / total) * i * 2;
+    const angle2 = (2 * Math.PI / total) * i * multiplicationNbr;
 
     const svg = document.querySelector('svg');
     const line = document.createElementNS("http://www.w3.org/2000/svg", 'line');
@@ -53,4 +54,19 @@ function addGraduation(angle) {
     svg.appendChild(circle);
 }
 
-addEventListener('DOMContentLoaded', draw);
+function increase() {
+    console.log('increase');
+}
+
+function decrease() {
+    console.log('decrease');
+}
+
+function main() {
+    draw();
+    document.querySelector('button.increase').addEventListener('click', increase);
+    document.querySelector('button.decrease').addEventListener('click', decrease);
+}
+
+addEventListener('DOMContentLoaded', main);
+

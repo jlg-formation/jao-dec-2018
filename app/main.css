@@ -1,15 +1,15 @@
-body {
-    position: relative;
+.command span {
+    display: inline-block;
+    padding: 0.5em 1em;
+    margin: 0;
+    border : 1px solid black;
 }
 
-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
+.command button {
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0;
+    border : 1px solid black;
 }
 
-div {
-    position: absolute;
-    top: 150px;
-    left: 150px;
-}
+
