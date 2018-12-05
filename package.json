@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cd app && webpack -w --mode development"
+    "build": "cd app && webpack -w --mode development --devtool source-map"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +12,8 @@
   "devDependencies": {
     "webpack": "^4.27.0",
     "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "jshashes": "^1.0.7"
   }
 }
