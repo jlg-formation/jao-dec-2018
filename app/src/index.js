@@ -4,9 +4,14 @@ import Hashes from 'jshashes';
 
 const SHA256 = new Hashes.SHA256;
 
-var str = 'Sample text!'
+const str = 'Sample text!'
 
 console.log('SHA256: ' + SHA256.hex(str));
+
+
+const cx = 300;
+const cy = 300;
+const r = 270;
 
 
 function draw() {
@@ -18,11 +23,21 @@ function draw() {
 </svg>
     `;
 
+
+    const total = 10;
+    for (let i = 0; i < total; i++) {
+        addGraduation((360 / total) * i);
+    }
+
+}
+
+function addGraduation(angle) {
+    angle = angle * 2 * Math.PI / 360;
     const svg = document.querySelector('svg');
     console.log('svg', svg);
     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-    circle.setAttribute("cx", 300);
-    circle.setAttribute("cy", 300);
+    circle.setAttribute("cx", cx + r * Math.cos(angle));
+    circle.setAttribute("cy", cy + r * Math.sin(angle));
     circle.setAttribute("r", 5);
     circle.setAttribute("stroke", "black");
     svg.appendChild(circle);
