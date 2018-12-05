@@ -9,7 +9,7 @@ const cx = 300;
 const cy = 300;
 const r = 270;
 const total = 100;
-const multiplicationNbr = 6;
+let multiplicationNbr = 6;
 
 function draw() {
     const div = document.querySelector('div');
@@ -56,10 +56,14 @@ function addGraduation(angle) {
 
 function increase() {
     console.log('increase');
+    multiplicationNbr++;
+    document.querySelector('.command span').innerHTML = multiplicationNbr;
 }
 
 function decrease() {
     console.log('decrease');
+    multiplicationNbr--;
+    document.querySelector('.command span').innerHTML = multiplicationNbr;
 }
 
 function main() {
