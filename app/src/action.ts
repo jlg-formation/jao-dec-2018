@@ -11,7 +11,7 @@ export function decrease(...args) {
 }
 
 export function setMultiplyNbr() {
-    store.multiplicationNbr = document.querySelector('.command .multiply input').value;
+    store.multiplicationNbr = +(document.querySelector('.command .multiply input') as HTMLInputElement).value;
 }
 
 export function increaseTotal() {
@@ -25,5 +25,5 @@ export function decreaseTotal(...args) {
 }
 
 export function setTotal() {
-    store.total = document.querySelector('.command .total input').value;
+    store.total = +(document.querySelector('.command .total input') as HTMLInputElement).value;
 }
